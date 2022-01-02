@@ -269,6 +269,8 @@ project.synth();",
 }
 `;
 
+exports[`projen new pnpm-workspace 1`] = `Object {}`;
+
 exports[`projen new project 1`] = `Object {}`;
 
 exports[`projen new python 1`] = `

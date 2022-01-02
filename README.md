@@ -57,6 +57,7 @@ list):
 * [nextjs](https://github.com/projen/projen/blob/main/API.md#projen-web-nextjsproject) - Next.js project without TypeScript.
 * [nextjs-ts](https://github.com/projen/projen/blob/main/API.md#projen-web-nextjstypescriptproject) - Next.js project with TypeScript.
 * [node](https://github.com/projen/projen/blob/main/API.md#projen-javascript-nodeproject) - Node.js project.
+* [pnpm-workspace](https://github.com/projen/projen/blob/main/API.md#projen-pnpm-pnpmworkspaceproject) - A pnpm workspace for mono repositories managed by pnpm.
 * [project](https://github.com/projen/projen/blob/main/API.md#projen-project) - Base project.
 * [python](https://github.com/projen/projen/blob/main/API.md#projen-python-pythonproject) - Python project.
 * [react](https://github.com/projen/projen/blob/main/API.md#projen-web-reactproject) - React project without TypeScript.

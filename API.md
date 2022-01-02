@@ -84,6 +84,8 @@ Name|Description
 [javascript.TypescriptConfig](#projen-javascript-typescriptconfig)|*No description*
 [javascript.UpgradeDependencies](#projen-javascript-upgradedependencies)|Upgrade node project dependencies.
 [javascript.UpgradeDependenciesSchedule](#projen-javascript-upgradedependenciesschedule)|How often to check for new versions and raise pull requests for version upgrades.
+[pnpm.PnpmWorkspaceProject](#projen-pnpm-pnpmworkspaceproject)|A pnpm workspace for mono repositories managed by pnpm.
+[pnpm.Projenrc](#projen-pnpm-projenrc)|Sets up a typescript project to use TypeScript for projenrc.
 [python.Pip](#projen-python-pip)|Manages dependencies using a requirements.txt file and the pip CLI tool.
 [python.Poetry](#projen-python-poetry)|Manage project dependencies, virtual environments, and packaging through the poetry CLI tool.
 [python.PoetryPyproject](#projen-python-poetrypyproject)|Represents configuration of a pyproject.toml file for a Poetry project.
@@ -239,6 +241,8 @@ Name|Description
 [javascript.TypescriptConfigOptions](#projen-javascript-typescriptconfigoptions)|*No description*
 [javascript.UpgradeDependenciesOptions](#projen-javascript-upgradedependenciesoptions)|Options for `UpgradeDependencies`.
 [javascript.UpgradeDependenciesWorkflowOptions](#projen-javascript-upgradedependenciesworkflowoptions)|Options for `UpgradeDependencies.workflowOptions`.
+[pnpm.PnpmWorkspaceProjectOptions](#projen-pnpm-pnpmworkspaceprojectoptions)|Options for `PnpmWorkspaceProject`.
+[pnpm.ProjenrcOptions](#projen-pnpm-projenrcoptions)|*No description*
 [python.PipOptions](#projen-python-pipoptions)|Options for pip.
 [python.PoetryPyprojectOptions](#projen-python-poetrypyprojectoptions)|Poetry-specific options.
 [python.PoetryPyprojectOptionsWithoutDeps](#projen-python-poetrypyprojectoptionswithoutdeps)|Poetry-specific options.
@@ -7165,6 +7169,265 @@ __Returns__:
 
 
 
+## class PnpmWorkspaceProject 🔹 <a id="projen-pnpm-pnpmworkspaceproject"></a>
+
+A pnpm workspace for mono repositories managed by pnpm.
+
+__Submodule__: pnpm
+
+__Extends__: [Project](#projen-project)
+
+### Initializer
+
+
+
+
+```ts
+new pnpm.PnpmWorkspaceProject(options: PnpmWorkspaceProjectOptions)
+```
+
+* **options** (<code>[pnpm.PnpmWorkspaceProjectOptions](#projen-pnpm-pnpmworkspaceprojectoptions)</code>)  *No description*
+  * **name** (<code>string</code>)  This is the name of your project. 
+  * **logging** (<code>[LoggerOptions](#projen-loggeroptions)</code>)  Configure logging options such as verbosity. __*Default*__: {}
+  * **outdir** (<code>string</code>)  The root directory of the project. __*Default*__: "."
+  * **parent** (<code>[Project](#projen-project)</code>)  The parent project, if this project is part of a bigger project. __*Optional*__
+  * **projenCommand** (<code>string</code>)  The shell command to use in order to run the projen CLI. __*Default*__: "npx projen"
+  * **projenrcJson** (<code>boolean</code>)  Generate (once) .projenrc.json (in JSON). Set to `false` in order to disable .projenrc.json generation. __*Default*__: false
+  * **projenrcJsonOptions** (<code>[ProjenrcOptions](#projen-projenrcoptions)</code>)  Options for .projenrc.json. __*Default*__: default options
+  * **allowLibraryDependencies** (<code>boolean</code>)  Allow the project to include `peerDependencies` and `bundledDependencies`. __*Default*__: true
+  * **authorEmail** (<code>string</code>)  Author's e-mail. __*Optional*__
+  * **authorName** (<code>string</code>)  Author's name. __*Optional*__
+  * **authorOrganization** (<code>boolean</code>)  Author's Organization. __*Optional*__
+  * **authorUrl** (<code>string</code>)  Author's URL / Website. __*Optional*__
+  * **autoDetectBin** (<code>boolean</code>)  Automatically add all executables under the `bin` directory to your `package.json` file under the `bin` section. __*Default*__: true
+  * **bin** (<code>Map<string, string></code>)  Binary programs vended with your module. __*Optional*__
+  * **bugsEmail** (<code>string</code>)  The email address to which issues should be reported. __*Optional*__
+  * **bugsUrl** (<code>string</code>)  The url to your project's issue tracker. __*Optional*__
+  * **bundledDeps** (<code>Array<string></code>)  List of dependencies to bundle into this module. __*Optional*__
+  * **codeArtifactOptions** (<code>[javascript.CodeArtifactOptions](#projen-javascript-codeartifactoptions)</code>)  Options for publishing npm package to AWS CodeArtifact. __*Default*__: undefined
+  * **deps** (<code>Array<string></code>)  Runtime dependencies of this module. __*Default*__: []
+  * **description** (<code>string</code>)  The description is just a string that helps people understand the purpose of the package. __*Optional*__
+  * **devDeps** (<code>Array<string></code>)  Build dependencies for this module. __*Default*__: []
+  * **entrypoint** (<code>string</code>)  Module entrypoint (`main` in `package.json`). __*Default*__: "lib/index.js"
+  * **homepage** (<code>string</code>)  Package's Homepage / Website. __*Optional*__
+  * **keywords** (<code>Array<string></code>)  Keywords to include in `package.json`. __*Optional*__
+  * **license** (<code>string</code>)  License's SPDX identifier. __*Default*__: "Apache-2.0"
+  * **licensed** (<code>boolean</code>)  Indicates if a license should be added. __*Default*__: true
+  * **maxNodeVersion** (<code>string</code>)  Minimum node.js version to require via `engines` (inclusive). __*Default*__: no max
+  * **minNodeVersion** (<code>string</code>)  Minimum Node.js version to require via package.json `engines` (inclusive). __*Default*__: no "engines" specified
+  * **npmAccess** (<code>[javascript.NpmAccess](#projen-javascript-npmaccess)</code>)  Access level of the npm package. __*Default*__: for scoped packages (e.g. `foo@bar`), the default is `NpmAccess.RESTRICTED`, for non-scoped packages, the default is `NpmAccess.PUBLIC`.
+  * **npmRegistry** (<code>string</code>)  The host name of the npm registry to publish to. __*Optional*__
+  * **npmRegistryUrl** (<code>string</code>)  The base URL of the npm package registry. __*Default*__: "https://registry.npmjs.org"
+  * **npmTokenSecret** (<code>string</code>)  GitHub secret which contains the NPM token to use when publishing packages. __*Default*__: "NPM_TOKEN"
+  * **packageManager** (<code>[javascript.NodePackageManager](#projen-javascript-nodepackagemanager)</code>)  The Node Package Manager used to execute scripts. __*Default*__: NodePackageManager.YARN
+  * **packageName** (<code>string</code>)  The "name" in package.json. __*Default*__: defaults to project name
+  * **peerDependencyOptions** (<code>[javascript.PeerDependencyOptions](#projen-javascript-peerdependencyoptions)</code>)  Options for `peerDeps`. __*Optional*__
+  * **peerDeps** (<code>Array<string></code>)  Peer dependencies for this module. __*Default*__: []
+  * **repository** (<code>string</code>)  The repository is the location where the actual code for your package lives. __*Optional*__
+  * **repositoryDirectory** (<code>string</code>)  If the package.json for your package is not in the root directory (for example if it is part of a monorepo), you can specify the directory in which it lives. __*Optional*__
+  * **scripts** (<code>Map<string, string></code>)  npm scripts to include. __*Default*__: {}
+  * **stability** (<code>string</code>)  Package's Stability. __*Optional*__
+  * **gitignore** (<code>Array<string></code>)  Additional entries to .gitignore. __*Optional*__
+  * **projenDevDependency** (<code>boolean</code>)  Indicates of "projen" should be installed as a devDependency. __*Default*__: true
+  * **projenrcTs** (<code>boolean</code>)  Use TypeScript for your projenrc file (`.projenrc.ts`). __*Default*__: false
+  * **projenrcTsOptions** (<code>[pnpm.ProjenrcOptions](#projen-pnpm-projenrcoptions)</code>)  Options for .projenrc.ts. __*Optional*__
+  * **projenVersion** (<code>string</code>)  Version of projen to install. __*Default*__: Defaults to the latest version.
+  * **readme** (<code>[SampleReadmeProps](#projen-samplereadmeprops)</code>)  The README setup. __*Default*__: { filename: 'README.md', contents: '# replace this' }
+
+
+
+### Properties
+
+
+Name | Type | Description 
+-----|------|-------------
+**package**🔹 | <code>[javascript.NodePackage](#projen-javascript-nodepackage)</code> | API for managing the node package.
+**vscode**🔹 | <code>[vscode.VsCode](#projen-vscode-vscode)</code> | Access all VSCode components.
+
+### Methods
+
+
+#### addBins(bins)🔹 <a id="projen-pnpm-pnpmworkspaceproject-addbins"></a>
+
+
+
+```ts
+addBins(bins: Map<string, string>): void
+```
+
+* **bins** (<code>Map<string, string></code>)  *No description*
+
+
+
+
+#### addBundledDeps(...deps)🔹 <a id="projen-pnpm-pnpmworkspaceproject-addbundleddeps"></a>
+
+Defines bundled dependencies.
+
+Bundled dependencies will be added as normal dependencies as well as to the
+`bundledDependencies` section of your `package.json`.
+
+```ts
+addBundledDeps(...deps: string[]): void
+```
+
+* **deps** (<code>string</code>)  Names modules to install.
+
+
+
+
+#### addDeps(...deps)🔹 <a id="projen-pnpm-pnpmworkspaceproject-adddeps"></a>
+
+Defines normal dependencies.
+
+```ts
+addDeps(...deps: string[]): void
+```
+
+* **deps** (<code>string</code>)  Names modules to install.
+
+
+
+
+#### addDevDeps(...deps)🔹 <a id="projen-pnpm-pnpmworkspaceproject-adddevdeps"></a>
+
+Defines development/test dependencies.
+
+```ts
+addDevDeps(...deps: string[]): void
+```
+
+* **deps** (<code>string</code>)  Names modules to install.
+
+
+
+
+#### addFields(fields)🔹 <a id="projen-pnpm-pnpmworkspaceproject-addfields"></a>
+
+Directly set fields in `package.json`.
+
+```ts
+addFields(fields: Map<string, any>): void
+```
+
+* **fields** (<code>Map<string, any></code>)  The fields to set.
+
+
+
+
+#### addKeywords(...keywords)🔹 <a id="projen-pnpm-pnpmworkspaceproject-addkeywords"></a>
+
+Adds keywords to package.json (deduplicated).
+
+```ts
+addKeywords(...keywords: string[]): void
+```
+
+* **keywords** (<code>string</code>)  The keywords to add.
+
+
+
+
+#### addPeerDeps(...deps)🔹 <a id="projen-pnpm-pnpmworkspaceproject-addpeerdeps"></a>
+
+Defines peer dependencies.
+
+When adding peer dependencies, a devDependency will also be added on the
+pinned version of the declared peer. This will ensure that you are testing
+your code against the minimum version required from your consumers.
+
+```ts
+addPeerDeps(...deps: string[]): void
+```
+
+* **deps** (<code>string</code>)  Names modules to install.
+
+
+
+
+#### hasScript(name)🔹 <a id="projen-pnpm-pnpmworkspaceproject-hasscript"></a>
+
+Indicates if a script by the name name is defined.
+
+```ts
+hasScript(name: string): boolean
+```
+
+* **name** (<code>string</code>)  The name of the script.
+
+__Returns__:
+* <code>boolean</code>
+
+#### removeScript(name)🔹 <a id="projen-pnpm-pnpmworkspaceproject-removescript"></a>
+
+Removes the npm script (always successful).
+
+```ts
+removeScript(name: string): void
+```
+
+* **name** (<code>string</code>)  The name of the script.
+
+
+
+
+#### runTaskCommand(task)🔹 <a id="projen-pnpm-pnpmworkspaceproject-runtaskcommand"></a>
+
+Returns the shell command to execute in order to run a task.
+
+This will
+typically be `npx projen TASK`.
+
+```ts
+runTaskCommand(task: Task): string
+```
+
+* **task** (<code>[Task](#projen-task)</code>)  The task for which the command is required.
+
+__Returns__:
+* <code>string</code>
+
+#### setScript(name, command)🔹 <a id="projen-pnpm-pnpmworkspaceproject-setscript"></a>
+
+Replaces the contents of an npm package.json script.
+
+```ts
+setScript(name: string, command: string): void
+```
+
+* **name** (<code>string</code>)  The script name.
+* **command** (<code>string</code>)  The command to execute.
+
+
+
+
+
+
+## class Projenrc 🔹 <a id="projen-pnpm-projenrc"></a>
+
+Sets up a typescript project to use TypeScript for projenrc.
+
+__Submodule__: pnpm
+
+__Extends__: [Component](#projen-component)
+
+### Initializer
+
+
+
+
+```ts
+new pnpm.Projenrc(project: PnpmWorkspaceProject, options?: ProjenrcOptions)
+```
+
+* **project** (<code>[pnpm.PnpmWorkspaceProject](#projen-pnpm-pnpmworkspaceproject)</code>)  *No description*
+* **options** (<code>[pnpm.ProjenrcOptions](#projen-pnpm-projenrcoptions)</code>)  *No description*
+  * **filename** (<code>string</code>)  The name of the projenrc file. __*Default*__: ".projenrc.ts"
+  * **projenCodeDir** (<code>string</code>)  A directory tree that may contain *.ts files that can be referenced from your projenrc typescript file. __*Default*__: "projenrc"
+
+
+
+
 ## class Pip 🔹 <a id="projen-python-pip"></a>
 
 Manages dependencies using a requirements.txt file and the pip CLI tool.
@@ -13362,6 +13625,78 @@ Name | Type | Description
 **runsOn**?🔹 | <code>Array<string></code> | Github Runner selection labels.<br/>__*Default*__: ["ubuntu-latest"]
 **schedule**?🔹 | <code>[javascript.UpgradeDependenciesSchedule](#projen-javascript-upgradedependenciesschedule)</code> | Schedule to run on.<br/>__*Default*__: UpgradeDependenciesSchedule.DAILY
 **secret**?🔹 | <code>string</code> | Which secret to use when creating the PR.<br/>__*Default*__: default github token.
+
+
+
+## struct PnpmWorkspaceProjectOptions 🔹 <a id="projen-pnpm-pnpmworkspaceprojectoptions"></a>
+
+
+Options for `PnpmWorkspaceProject`.
+
+
+
+Name | Type | Description 
+-----|------|-------------
+**name**🔹 | <code>string</code> | This is the name of your project.
+**allowLibraryDependencies**?🔹 | <code>boolean</code> | Allow the project to include `peerDependencies` and `bundledDependencies`.<br/>__*Default*__: true
+**authorEmail**?🔹 | <code>string</code> | Author's e-mail.<br/>__*Optional*__
+**authorName**?🔹 | <code>string</code> | Author's name.<br/>__*Optional*__
+**authorOrganization**?🔹 | <code>boolean</code> | Author's Organization.<br/>__*Optional*__
+**authorUrl**?🔹 | <code>string</code> | Author's URL / Website.<br/>__*Optional*__
+**autoDetectBin**?🔹 | <code>boolean</code> | Automatically add all executables under the `bin` directory to your `package.json` file under the `bin` section.<br/>__*Default*__: true
+**bin**?🔹 | <code>Map<string, string></code> | Binary programs vended with your module.<br/>__*Optional*__
+**bugsEmail**?🔹 | <code>string</code> | The email address to which issues should be reported.<br/>__*Optional*__
+**bugsUrl**?🔹 | <code>string</code> | The url to your project's issue tracker.<br/>__*Optional*__
+**bundledDeps**?🔹 | <code>Array<string></code> | List of dependencies to bundle into this module.<br/>__*Optional*__
+**codeArtifactOptions**?🔹 | <code>[javascript.CodeArtifactOptions](#projen-javascript-codeartifactoptions)</code> | Options for publishing npm package to AWS CodeArtifact.<br/>__*Default*__: undefined
+**deps**?🔹 | <code>Array<string></code> | Runtime dependencies of this module.<br/>__*Default*__: []
+**description**?🔹 | <code>string</code> | The description is just a string that helps people understand the purpose of the package.<br/>__*Optional*__
+**devDeps**?🔹 | <code>Array<string></code> | Build dependencies for this module.<br/>__*Default*__: []
+**entrypoint**?🔹 | <code>string</code> | Module entrypoint (`main` in `package.json`).<br/>__*Default*__: "lib/index.js"
+**gitignore**?🔹 | <code>Array<string></code> | Additional entries to .gitignore.<br/>__*Optional*__
+**homepage**?🔹 | <code>string</code> | Package's Homepage / Website.<br/>__*Optional*__
+**keywords**?🔹 | <code>Array<string></code> | Keywords to include in `package.json`.<br/>__*Optional*__
+**license**?🔹 | <code>string</code> | License's SPDX identifier.<br/>__*Default*__: "Apache-2.0"
+**licensed**?🔹 | <code>boolean</code> | Indicates if a license should be added.<br/>__*Default*__: true
+**logging**?🔹 | <code>[LoggerOptions](#projen-loggeroptions)</code> | Configure logging options such as verbosity.<br/>__*Default*__: {}
+**maxNodeVersion**?🔹 | <code>string</code> | Minimum node.js version to require via `engines` (inclusive).<br/>__*Default*__: no max
+**minNodeVersion**?🔹 | <code>string</code> | Minimum Node.js version to require via package.json `engines` (inclusive).<br/>__*Default*__: no "engines" specified
+**npmAccess**?🔹 | <code>[javascript.NpmAccess](#projen-javascript-npmaccess)</code> | Access level of the npm package.<br/>__*Default*__: for scoped packages (e.g. `foo@bar`), the default is `NpmAccess.RESTRICTED`, for non-scoped packages, the default is `NpmAccess.PUBLIC`.
+**npmRegistry**?⚠️ | <code>string</code> | The host name of the npm registry to publish to.<br/>__*Optional*__
+**npmRegistryUrl**?🔹 | <code>string</code> | The base URL of the npm package registry.<br/>__*Default*__: "https://registry.npmjs.org"
+**npmTokenSecret**?🔹 | <code>string</code> | GitHub secret which contains the NPM token to use when publishing packages.<br/>__*Default*__: "NPM_TOKEN"
+**outdir**?🔹 | <code>string</code> | The root directory of the project.<br/>__*Default*__: "."
+**packageManager**?🔹 | <code>[javascript.NodePackageManager](#projen-javascript-nodepackagemanager)</code> | The Node Package Manager used to execute scripts.<br/>__*Default*__: NodePackageManager.YARN
+**packageName**?🔹 | <code>string</code> | The "name" in package.json.<br/>__*Default*__: defaults to project name
+**parent**?🔹 | <code>[Project](#projen-project)</code> | The parent project, if this project is part of a bigger project.<br/>__*Optional*__
+**peerDependencyOptions**?🔹 | <code>[javascript.PeerDependencyOptions](#projen-javascript-peerdependencyoptions)</code> | Options for `peerDeps`.<br/>__*Optional*__
+**peerDeps**?🔹 | <code>Array<string></code> | Peer dependencies for this module.<br/>__*Default*__: []
+**projenCommand**?🔹 | <code>string</code> | The shell command to use in order to run the projen CLI.<br/>__*Default*__: "npx projen"
+**projenDevDependency**?🔹 | <code>boolean</code> | Indicates of "projen" should be installed as a devDependency.<br/>__*Default*__: true
+**projenVersion**?🔹 | <code>string</code> | Version of projen to install.<br/>__*Default*__: Defaults to the latest version.
+**projenrcJson**?🔹 | <code>boolean</code> | Generate (once) .projenrc.json (in JSON). Set to `false` in order to disable .projenrc.json generation.<br/>__*Default*__: false
+**projenrcJsonOptions**?🔹 | <code>[ProjenrcOptions](#projen-projenrcoptions)</code> | Options for .projenrc.json.<br/>__*Default*__: default options
+**projenrcTs**?🔹 | <code>boolean</code> | Use TypeScript for your projenrc file (`.projenrc.ts`).<br/>__*Default*__: false
+**projenrcTsOptions**?🔹 | <code>[pnpm.ProjenrcOptions](#projen-pnpm-projenrcoptions)</code> | Options for .projenrc.ts.<br/>__*Optional*__
+**readme**?🔹 | <code>[SampleReadmeProps](#projen-samplereadmeprops)</code> | The README setup.<br/>__*Default*__: { filename: 'README.md', contents: '# replace this' }
+**repository**?🔹 | <code>string</code> | The repository is the location where the actual code for your package lives.<br/>__*Optional*__
+**repositoryDirectory**?🔹 | <code>string</code> | If the package.json for your package is not in the root directory (for example if it is part of a monorepo), you can specify the directory in which it lives.<br/>__*Optional*__
+**scripts**?🔹 | <code>Map<string, string></code> | npm scripts to include.<br/>__*Default*__: {}
+**stability**?🔹 | <code>string</code> | Package's Stability.<br/>__*Optional*__
+
+
+
+## struct ProjenrcOptions 🔹 <a id="projen-pnpm-projenrcoptions"></a>
+
+
+
+
+
+
+Name | Type | Description 
+-----|------|-------------
+**filename**?🔹 | <code>string</code> | The name of the projenrc file.<br/>__*Default*__: ".projenrc.ts"
+**projenCodeDir**?🔹 | <code>string</code> | A directory tree that may contain *.ts files that can be referenced from your projenrc typescript file.<br/>__*Default*__: "projenrc"
 
 
 
